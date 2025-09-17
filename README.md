@@ -18,3 +18,30 @@ No special structure for Next-Fit,
 Priority queue for Worst-Fit,
 Balanced binary search tree for Best-Fit,
 Augmented binary search tree (with disk indices and subtree capacity info) for First-Fit.
+
+
+ ### Data Structures
+ 
+ Since the universitys les number several hundred thousand, your implementation must be as
+ e cient as possible to allow SEGI to obtain a solution in a reasonable amount of time. This
+ means that for certain strategies, you will need to use the most appropriate data structures. Some
+ ideas are given below for each strategy.
+ - Next-Fit. This is the simplest approach. No special structure is required to implement it
+ e ciently.
+
+ - Worst-Fit. This solution requires accessing for each new le on disk among the open ones that
+ is the least full. It must also be possible to update the empty disk space. This seems to t very
+ well with the speci cations of a priority queue.
+
+ - Best-Fit. Here, we must be able to access the disk with the lowest free space that can receive
+ the le. This seems possible if you store the open disks in a binary search tree using the size of
+ the free disk space as the key (see gure 1 and question 3 of the theoretical analysis). To ensure
+ e cient code, however, it is necessary to use a balanced tree implementation.
+
+ - First-Fit. This is the most complicated approach to implement e ciently. It is necessary to
+ be able to nd the rst open disk that can contain the le. Therefore, there are two criteria to
+ consider: the size of the empty space on the disk and the time at which the disk was opened. One
+ possible approach is to use a binary search tree using the disk index as the key in the order it
+ was opened. By adding the maximum capacity of the disks in the subtree of which this node is
+ the root, to each node of this tree, it is possible to quickly nd the target disk (see gure 2 and
+ question 4 of the theoretical analysis).
